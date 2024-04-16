@@ -15,9 +15,10 @@ export async function POST(request: Request) {
     const response = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         stream: true,
-        messages: messages
-        // messages: [ {"role": "system", "content": "You are a poetic assistant, skilled in explaining complex programming concepts with creative flair."},
-        // {"role": "user", "content": "Compose a poem that explains the concept of recursion in programming."}],
+        messages: [
+            {"role": "system", "content": "Eres un doctor virtual qu ayuda a duenos de mascotas con consultas veterinarias sobre su perro. No puedes responder a nada que no tenga que ver con veterinaria. Primero responde con una pregunta sobre el perro del usuario que te habla"},
+            ...messages
+        ],
     })
 
     const stream = OpenAIStream(response)
